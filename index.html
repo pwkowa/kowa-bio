@@ -1,0 +1,526 @@
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Le goat</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700&display=swap');
+  
+  :root {
+  --background-image: url('https://r2.guns.lol/2dc512de-cb85-4767-82de-3469d280daca.gif');
+  --primary-color: #ff00de;
+  --secondary-color: #FFFFFF;
+  --background-color: #080808;
+  --content-background: rgba(8, 8, 8, 0.8);
+  --transition-duration: 1s;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Satoshi', sans-serif;
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  overflow: hidden;
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: opacity var(--transition-duration), transform var(--transition-duration);
+}
+
+.background-1 {
+  background-image: var(--background-image);
+  z-index: 1;
+}
+
+.background-2 {
+  opacity: 0;
+  z-index: 2;
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(8, 8, 8, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out, background-color var(--transition-duration);
+  z-index: 10;
+}
+
+.overlay-text {
+  font-size: 32px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.content {
+  z-index: 11;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, background-color var(--transition-duration);
+  padding: 20px;
+  background-color: var(--content-background);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+}
+
+.username {
+  font-size: 39.5px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-shadow: 0 0 16.5px var(--secondary-color);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-style: italic;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--primary-color), 0 0 35px var(--primary-color), 0 0 40px var(--primary-color), 0 0 50px var(--primary-color), 0 0 75px var(--primary-color); }
+  to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px var(--primary-color), 0 0 70px var(--primary-color), 0 0 80px var(--primary-color), 0 0 100px var(--primary-color), 0 0 150px var(--primary-color); }
+}
+
+.description {
+  font-size: 19px;
+  font-weight: 570;
+  margin-bottom: 30px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.social-icon {
+  font-size: 24px;
+  color: var(--secondary-color);
+  filter: drop-shadow(var(--secondary-color) 1px 0 7px);
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(var(--primary-color) 1px 0 10px);
+}
+
+.views {
+  font-size: 14.5px;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.views svg {
+  margin-right: 5px;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.page-1 {
+  z-index: 12;
+}
+
+.page-2 {
+  z-index: 11;
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--secondary-color);
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s, opacity 0.5s;
+  opacity: 0;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.volume-control {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.volume-icon {
+  color: var(--secondary-color);
+  font-size: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 5px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+  transition: background 0.3s;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.volume-slider:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  background: var(--primary-color);
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  background: var(--primary-color);
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="background background-1"></div>
+  <div class="background background-2"></div>
+  <button id="themeToggle" class="theme-toggle">Switch Theme</button>
+  <div class="volume-control" id="volumeControl">
+    <span class="volume-icon" id="volumeIcon">🔊</span>
+    <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider" id="volumeSlider">
+  </div>
+  <div class="page page-1" id="page1">
+    <div class="overlay" id="overlay">
+      <div class="overlay-text">3nter?</div>
+    </div>
+  </div>
+
+  <div class="page page-2" id="page2">
+    <div class="content" id="content">
+      <img src="https://i.ibb.co/NVSLz6J/443b19e6-ca2a-4333-8cd3-b50513e90d34.jpg" alt="Kowa" class="avatar floating">
+      <h1 class="username">Kowa</h1>
+      <p class="subtitle">Wojak Founder</p>
+      <p class="description">"Roses are red, Violets are blue, You are a skid, Nobody like you"</p>
+      <div class="socials">
+        <a href="https://discord.gg/M9xRSWTkW5" class="social-icon" title="Discord">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="1.96 4.26 20.03 15.53">
+            <path fill="currentColor" d="M14.82 4.26a10.14 10.14 0 0 0-.53 1.1a14.66 14.66 0 0 0-4.58 0a10.14 10.14 0 0 0-.53-1.1a16 16 0 0 0-4.13 1.3a17.33 17.33 0 0 0-3 11.59a16.6 16.6 0 0 0 5.07 2.59A12.89 12.89 0 0 0 8.23 18a9.65 9.65 0 0 1-1.71-.83a3.39 3.39 0 0 0 .42-.33a11.66 11.66 0 0 0 10.12 0q.21.18.42.33a10.84 10.84 0 0 1-1.71.84a12.41 12.41 0 0 0 1.08 1.78a16.44 16.44 0 0 0 5.06-2.59a17.22 17.22 0 0 0-3-11.59a16.09 16.09 0 0 0-4.09-1.35zM8.68 14.81a1.94 1.94 0 0 1-1.8-2a1.93 1.93 0 0 1 1.8-2a1.93 1.93 0 0 1 1.8 2a1.93 1.93 0 0 1-1.8 2zm6.64 0a1.94 1.94 0 0 1-1.8-2a1.93 1.93 0 0 1 1.8-2a1.92 1.92 0 0 1 1.8 2a1.92 1.92 0 0 1-1.8 2z"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="views">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"></path>
+        </svg>
+        <span id="viewCount">Loading...</span> views
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <audio id="backgroundMusic1" loop>
+    <source src="https://r2.guns.lol/1a3c954a-2bbe-42b0-ae0d-7ac5d12420d8.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="backgroundMusic2" loop>
+    <source src="https://sndup.net/v5r2n/d" type="audio/mpeg">
+  </audio>
+  
+  <script>
+    const overlay = document.getElementById('overlay');
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const content = document.getElementById('content');
+    const audio1 = document.getElementById('backgroundMusic1');
+    const audio2 = document.getElementById('backgroundMusic2');
+    const viewCountElement = document.getElementById('viewCount');
+    const themeToggle = document.getElementById('themeToggle');
+    const background1 = document.querySelector('.background-1');
+    const background2 = document.querySelector('.background-2');
+    const volumeControl = document.getElementById('volumeControl');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeIcon = document.getElementById('volumeIcon');
+    
+    let viewCount = parseInt(localStorage.getItem('kowaViewCount')) || 0;
+    let currentTheme = 'malveillant';
+    let currentVolume = 1;
+  
+  const themes = {
+    malveillant: {
+      backgroundImage: 'url("https://r2.guns.lol/2dc512de-cb85-4767-82de-3469d280daca.gif")',
+      primaryColor: '#ff00de',
+      secondaryColor: '#FFFFFF',
+      backgroundColor: '#080808',
+      audio: audio1
+    },
+    kawaii: {
+      backgroundImage: 'url("https://s12.gifyu.com/images/SDnEA.gif")',
+      primaryColor: '#FF69B4',
+      secondaryColor: '#FFC0CB',
+      backgroundColor: '#FFF0F5',
+      audio: audio2
+    }
+  };
+  
+  function updateViewCount() {
+  viewCount++;
+  localStorage.setItem('kowaViewCount', viewCount);
+  viewCountElement.textContent = viewCount;
+  
+  fetch('https://guns.lol/api/updateViews', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ username: 'kowa', views: viewCount }),
+  })
+  .then(response => response.json())
+  .then(data => console.log('View count updated on server:', data))
+  .catch(error => console.error('Error updating view count:', error));
+}
+
+fetch('https://guns.lol/api/getViews?username=kowa')
+  .then(response => response.json())
+  .then(data => {
+    viewCount = data.views;
+    viewCountElement.textContent = viewCount;
+  })
+  .catch(error => {
+    console.error('Error fetching view count:', error);
+    viewCountElement.textContent = viewCount;
+  });
+
+overlay.addEventListener('click', () => {
+  page1.style.transform = 'translateX(-100%)';
+  page1.style.opacity = '0';
+  
+  setTimeout(() => {
+    page2.style.transform = 'translateX(0)';
+    page2.style.opacity = '1';
+    content.style.opacity = '1';
+    themeToggle.style.opacity = '1';
+    volumeControl.style.opacity = '1';
+    updateViewCount();
+  }, 500);
+  
+  themes[currentTheme].audio.play();
+});
+
+document.body.addEventListener('click', () => {
+  if (themes[currentTheme].audio.paused) {
+    themes[currentTheme].audio.play();
+  }
+});
+
+function crossfadeAudio(fadeOutAudio, fadeInAudio) {
+  const duration = 2000;
+  const interval = 50;
+  const steps = duration / interval;
+  let step = 0;
+
+  fadeInAudio.volume = 0;
+  fadeInAudio.play();
+
+  const fade = setInterval(() => {
+    step++;
+    const fadeOutVolume = (1 - (step / steps)) * currentVolume;
+    const fadeInVolume = (step / steps) * currentVolume;
+    
+    fadeOutAudio.volume = Math.max(0, Math.min(currentVolume, fadeOutVolume));
+    fadeInAudio.volume = Math.max(0, Math.min(currentVolume, fadeInVolume));
+    
+    if (step >= steps) {
+      clearInterval(fade);
+      fadeOutAudio.pause();
+    }
+  }, interval);
+}
+
+function applyTheme(theme, previousTheme) {
+  const fadeOutAudio = themes[previousTheme].audio;
+  const fadeInAudio = theme.audio;
+
+  background2.style.backgroundImage = theme.backgroundImage;
+  background2.style.opacity = '0';
+  background2.style.transform = 'scale(1.1)';
+  
+  setTimeout(() => {
+    background2.style.opacity = '1';
+    background2.style.transform = 'scale(1)';
+  }, 50);
+
+  setTimeout(() => {
+    background1.style.backgroundImage = theme.backgroundImage;
+    background2.style.opacity = '0';
+  }, 1000);
+
+  document.documentElement.style.setProperty('--primary-color', theme.primaryColor);
+  document.documentElement.style.setProperty('--secondary-color', theme.secondaryColor);
+  document.documentElement.style.setProperty('--background-color', theme.backgroundColor);
+  document.documentElement.style.setProperty('--content-background', theme.contentBackground);
+
+  document.body.style.color = theme.secondaryColor;
+
+  content.style.backgroundColor = theme.contentBackground;
+
+  crossfadeAudio(fadeOutAudio, fadeInAudio);
+}
+
+themeToggle.addEventListener('click', () => {
+  const previousTheme = currentTheme;
+  currentTheme = currentTheme === 'malveillant' ? 'kawaii' : 'malveillant';
+  applyTheme(themes[currentTheme], previousTheme);
+  themeToggle.textContent = currentTheme === 'malveillant' ? 'Switch to Kowai' : 'Back';
+});
+
+volumeSlider.addEventListener('input', (e) => {
+  currentVolume = parseFloat(e.target.value);
+  themes[currentTheme].audio.volume = currentVolume;
+  updateVolumeIcon();
+});
+
+volumeIcon.addEventListener('click', () => {
+  if (currentVolume > 0) {
+    volumeSlider.value = 0;
+  } else {
+    volumeSlider.value = 1;
+  }
+  currentVolume = parseFloat(volumeSlider.value);
+  themes[currentTheme].audio.volume = currentVolume;
+  updateVolumeIcon();
+});
+
+function updateVolumeIcon() {
+  if (currentVolume === 0) {
+    volumeIcon.textContent = '🔇';
+  } else if (currentVolume < 0.5) {
+    volumeIcon.textContent = '🔉';
+  } else {
+    volumeIcon.textContent = '🔊';
+  }
+}
+
+new cursoreffects.fairyDustCursor({
+  colors: ["#ff00de", "#00ff00", "#0000ff"],
+  size: 3,
+  alpha: 0.6
+});
+
+let typed = new Typed('.description', {
+  strings: ["Roses are red, Violets are blue, You are a skid, Nobody like you"],
+  typeSpeed: 50,
+  backSpeed: 25,
+  startDelay: 1000,
+  backDelay: 2000,
+  loop: true,
+  showCursor: true,
+  cursorChar: '|'
+});
+</script>
+
+<script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</body></html>
